@@ -1,12 +1,17 @@
 #include <Servo.h>
 #include <Wire.h>
 #include "Adafruit_TCS34725.h"
+#include <FastLED.h>
 
 Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);
 
 Servo wheelServo;  // create a servo object to control a servo
 Servo chuteServo;  // create another servo object to control a servo
 Servo mixerServo;
+
+const byte LED_DIGITAL = { 10 };
+const byte NUM_LEDS =  5; // QUANTIDADE DE LEDS ENDERECAVEIS
+CRGB leds[NUM_LEDS];
 
 const int calibrating = 0; //change this to 0 when you want to run the machine and to 1 when you set it up for the first time
 const int wheelOverRun = 80; //decrease this if the skittle goes past the colour sensor or increase it if the skittle stops before it reaches the sensor
@@ -52,7 +57,8 @@ void setup()
   }
 
   // printArray(SAMPLES);
-
+  FastLED.addLeds<WS2812B, LED_DIGITAL, GRB>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
+  FastLED.clear();
     
 }
 
@@ -70,8 +76,7 @@ void loop()
     // Serial.println();
     // Serial.println("Yes - contact switch aligned. Taking a reading....");
     delay(wheelOverRun); //allows the wheel to keep turning - adjust this value to ensure your skittle stops beenath the colour sensor.
-    wheelServo.write(92);  //stops the skittle wheel
-    mixerServo.write(92);
+    wheelServo.write(92);  //stops the skittle wheel    
     readColour();
     if (calibrating == 0){
       matchColour();
@@ -186,24 +191,52 @@ int findClosestSample()
   switch (index) {
     case 0:
       Serial.println("Vermelho");
+      for(int i = 0; i < NUM_LEDS; i++) {
+        leds[i] = CRGB(255, 0, 0);              
+      }
+      FastLED.show();
       break;
     case 1:
       Serial.println("Laranja");
+      for(int i = 0; i < NUM_LEDS; i++) {
+        leds[i] = CRGB(255, 100, 0);              
+      }
+      FastLED.show();
       break;
     case 2:
       Serial.println("Amarelo");
+      for(int i = 0; i < NUM_LEDS; i++) {
+        leds[i] = CRGB(255, 255, 0);              
+      }
+      FastLED.show();
       break;
     case 3:
       Serial.println("Verde");
+      for(int i = 0; i < NUM_LEDS; i++) {
+        leds[i] = CRGB(0, 255, 0);              
+      }
+      FastLED.show();
       break;
     case 4:
       Serial.println("Azul");
+      for(int i = 0; i < NUM_LEDS; i++) {
+        leds[i] = CRGB(0, 0, 255);              
+      }
+      FastLED.show();
       break;
     case 5:
       Serial.println("Marron");
+      for(int i = 0; i < NUM_LEDS; i++) {
+        leds[i] = CRGB(50, 10, 15);              
+      }
+      FastLED.show();
       break;
     default:
       //Serial.println("Branco");
+      for(int i = 0; i < NUM_LEDS; i++) {
+        leds[i] = CRGB(255, 255, 255);              
+      }
+      FastLED.show();
       break; 
   }  
   return index;
