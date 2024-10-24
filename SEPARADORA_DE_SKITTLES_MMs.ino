@@ -11,7 +11,7 @@ Servo mixerServo;
 const int calibrating = 0; //change this to 0 when you want to run the machine and to 1 when you set it up for the first time
 const int wheelOverRun = 160; //decrease this if the skittle goes past the colour sensor or increase it if the skittle stops before it reaches the sensor
 //270 para 90 --- 160 para 89
-const int contactSwitch = 8;
+const int infraRedSensor = 8;
 
 int switchState;
 int arrayIndexToAimAt;
@@ -21,13 +21,13 @@ float redReading, greenReading, blueReading; //somewhere to store our colour sen
 const int arrayRows = 7;
 const int arrayColumns = 6;
 int SAMPLES[arrayRows][arrayColumns] = {  // array goes red value, green value, blue value, colour, difference to sample (update by code later), angle for depositor
-  {95, 81,  58,  "Red", 0, 60}, //red -0
-  {107,  75,  52,  "Orange", 0, 70}, //orange -1
+  {95, 82,  58,  "Red", 0, 40}, //red -0
+  {107,  75,  52,  "Orange", 0, 60}, //orange -1
   {99,  87,  47,  "Yellow", 0, 80}, //yellow -2
-  {80,  94,  58,  "Green", 0, 100}, //green -3 
-  {73,  87,  72,  "Blue", 0, 110}, //blue -4   
-  {86,  86,  61, "Brown", 0, 120},  //brown -5
-  {91, 85, 59, "No Skittle", 0, 90}, //no skittle -6
+  {80,  94,  58,  "Green", 0, 120}, //green -3 
+  {73,  87,  72,  "Blue", 0, 140}, //blue -4   
+  {86,  86,  61, "Brown", 0, 160},  //brown -5
+  {91, 85, 59, "No Skittle", 0, 100}, //no skittle -6
 }; 
 // Determines the number of samples stored in the array
 const byte samplesCount = sizeof(SAMPLES) / sizeof(SAMPLES[0]);
@@ -35,7 +35,7 @@ const byte samplesCount = sizeof(SAMPLES) / sizeof(SAMPLES[0]);
 
 void setup()
 {
-  pinMode(contactSwitch, INPUT_PULLUP);
+  pinMode(infraRedSensor, INPUT_PULLUP);
   
   Serial.begin(9600);
 
@@ -61,7 +61,7 @@ void setup()
 
 void loop()
 {
-  switchState = digitalRead(contactSwitch);
+  switchState = digitalRead(infraRedSensor);
   
   if (switchState == HIGH){
     // if (calibrating == 0){
@@ -203,7 +203,7 @@ int findClosestSample()
       Serial.println("Marron");
       break;
     default:
-      Serial.println("Branco");
+      //Serial.println("Branco");
       break; 
   }  
   return index;
