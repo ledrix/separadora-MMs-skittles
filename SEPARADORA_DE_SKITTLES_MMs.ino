@@ -35,7 +35,7 @@ const byte samplesCount = sizeof(SAMPLES) / sizeof(SAMPLES[0]);
 
 void setup()
 {
-  pinMode(infraRedSensor, INPUT_PULLUP);
+  pinMode(infraRedSensor, INPUT);
   
   Serial.begin(9600);
 
