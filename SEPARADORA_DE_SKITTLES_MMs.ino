@@ -29,13 +29,13 @@ float redReading, greenReading, blueReading; //somewhere to store our colour sen
 const int arrayRows = 7;
 const int arrayColumns = 6;
 int SAMPLES[arrayRows][arrayColumns] = {  // array goes red value, green value, blue value, colour, difference to sample (update by code later), angle for depositor
-  {126, 66,  51,  "Red", 0, 20}, //red -- ok
-  {148,  56,  35,  "Orange", 0, 50}, //orange -1 -- ok
-  {111,  89,  32,  "Yellow", 0, 80}, //yellow -2 -- ok  
-  {70,  113,  49,  "Green", 0, 110}, //green -3 -- ok
-  {48,  87,  100,  "Blue", 0, 140}, //blue -4 
-  {88,  85,  59, "Brown", 0, 170},  //brown -5  
-  {86, 87, 59, "No Skittle", 0, 170}, //no skittle -6
+  {139, 62,  45,  "Red", 0, 20}, //red -- ok
+  {160,  53,  28,  "Orange", 0, 50}, //orange -1 -- ok
+  {115,  90,  30,  "Yellow", 0, 80}, //yellow -2 -- ok  
+  {80,  106,  48,  "Green", 0, 110}, //green -3 -- ok
+  {50,  89,  107,  "Blue", 0, 140}, //blue -4 
+  {103,  82,  54, "Brown", 0, 170},  //brown -5  
+  {97, 85, 54, "No Skittle", 0, 170}, //no skittle -6
 }; 
 // Determines the number of samples stored in the array
 const byte samplesCount = sizeof(SAMPLES) / sizeof(SAMPLES[0]);
@@ -88,26 +88,26 @@ void loop() {
     if (digitalRead(SENSOR_RODA) == HIGH) {
      wheelServo.write(87);
     }
-  
-    static unsigned long debounce;
-    if ((millis() - debounce) > 10000) {    
-      while (digitalRead(SENSOR_TUBO) == LOW) { 
-        wheelServo.write(92);
-        mixerServo.write(100);
-        delay(1000);
-        byte count = 0;     
-        while (count < 3) {
-        mixerServo.write(80);
-        digitalWrite(VIBRA, HIGH);
-        delay(200);
-        mixerServo.write(91);
-        digitalWrite(VIBRA, LOW);
-        delay(200);
-        count++; 
-        }           
-      }     
-      debounce = millis();                        
-    }          
+    mixerServo.write(100);
+    // static unsigned long debounce;
+    // if ((millis() - debounce) > 10000) {    
+    //   while (digitalRead(SENSOR_TUBO) == LOW) { 
+    //     wheelServo.write(92);
+    //     mixerServo.write(100);
+    //     delay(1000);
+    //     byte count = 0;     
+    //     while (count < 3) {
+    //     mixerServo.write(80);
+    //     digitalWrite(VIBRA, HIGH);
+    //     delay(200);
+    //     mixerServo.write(91);
+    //     digitalWrite(VIBRA, LOW);
+    //     delay(200);
+    //     count++; 
+    //     }           
+    //   }     
+    //   debounce = millis();                        
+    // }          
   
     if (digitalRead(SENSOR_RODA) == HIGH){
 
