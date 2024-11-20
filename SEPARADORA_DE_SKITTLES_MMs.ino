@@ -35,7 +35,7 @@ int SAMPLES[arrayRows][arrayColumns] = {  // array goes red value, green value, 
   {80,  106,  48,  "Green", 0, 115}, //green -3 -- ok
   {50,  89,  107,  "Blue", 0, 145}, //blue -4 
   {103,  82,  54, "Brown", 0, 175},  //brown -5  
-  {97, 85, 54, "No Skittle", 0, 1175}, //no skittle -6
+  {97, 85, 54, "No Skittle", 0, 175}, //no skittle -6
 }; 
 // Determines the number of samples stored in the array
 const byte samplesCount = sizeof(SAMPLES) / sizeof(SAMPLES[0]);
