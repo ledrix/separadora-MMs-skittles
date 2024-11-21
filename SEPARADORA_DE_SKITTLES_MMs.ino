@@ -88,7 +88,7 @@ void loop() {
     if (digitalRead(SENSOR_RODA) == HIGH) {
      wheelServo.write(87);
     }
-    mixerServo.write(100);
+    mixerServo.write(95);
     // static unsigned long debounce;
     // if ((millis() - debounce) > 10000) {    
     //   while (digitalRead(SENSOR_TUBO) == LOW) { 
