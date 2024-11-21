@@ -29,12 +29,12 @@ float redReading, greenReading, blueReading; //somewhere to store our colour sen
 const int arrayRows = 7;
 const int arrayColumns = 6;
 int SAMPLES[arrayRows][arrayColumns] = {  // array goes red value, green value, blue value, colour, difference to sample (update by code later), angle for depositor
-  {139, 62,  45,  "Red", 0, 25}, //red -- ok
-  {160,  53,  28,  "Orange", 0,55}, //orange -1 -- ok
-  {115,  90,  30,  "Yellow", 0, 85}, //yellow -2 -- ok  
-  {80,  106,  48,  "Green", 0, 115}, //green -3 -- ok
-  {50,  89,  107,  "Blue", 0, 145}, //blue -4 
-  {103,  82,  54, "Brown", 0, 175},  //brown -5  
+  {133, 66,  44,  "Red", 0, 25}, //red -- ok
+  {152,  56,  31,  "Orange", 0,55}, //orange -1 -- ok
+  {118,  89,  28,  "Yellow", 0, 85}, //yellow -2 -- ok  
+  {73,  116,  45,  "Green", 0, 115}, //green -3 -- ok
+  {47,  89,  103,  "Blue", 0, 145}, //blue -4 
+  {96,  84,  54, "Brown", 0, 175},  //brown -5  
   {97, 85, 54, "No Skittle", 0, 175}, //no skittle -6
 }; 
 // Determines the number of samples stored in the array
